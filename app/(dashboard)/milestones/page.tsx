@@ -59,7 +59,7 @@ function MilestoneRow({ m, rank }: { m: Milestone; rank: number }) {
   return (
     <>
       <div
-        className="grid items-center px-4 py-4 cursor-pointer transition-colors hover:bg-white/[0.025] border-b border-white/[0.05]"
+        className="grid items-center px-4 py-4 cursor-pointer transition-colors hover:bg-white/10 border-b border-white/[0.05]"
         style={{
           gridTemplateColumns: "48px 1fr 100px 120px 180px 100px 40px",
         }}
@@ -178,9 +178,9 @@ export default function MilestonesPage() {
         activeTab="all"
         onTabChange={() => {}}
         action={
-          <Button size="sm" className="h-7 font-bold">
-            <Plus className="w-3.5 h-3.5" strokeWidth={2.5} />
-            New
+          <Button>
+            <Plus size={12} />
+            Create Milestone
           </Button>
         }
         onSearch={() => {}}

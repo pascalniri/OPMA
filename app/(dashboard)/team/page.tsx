@@ -24,8 +24,8 @@ export default function TeamPage() {
       <Header
         title="Team"
         action={
-          <Button size="sm" className="h-7 font-bold">
-            <Plus className="w-3.5 h-3.5" strokeWidth={2.5} />
+          <Button>
+            <Plus size={12} />
             Invite
           </Button>
         }

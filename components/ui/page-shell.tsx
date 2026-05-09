@@ -98,7 +98,7 @@ export function PrimaryButton({
       style={styles[variant]}
       className="flex items-center gap-2 h-8 px-4 rounded-lg text-xs font-semibold transition-all hover:brightness-110 active:scale-95"
     >
-      {Icon && <Icon className="w-3.5 h-3.5" strokeWidth={2.5} />}
+      {Icon && <Icon size={12} />}
       {children}
     </button>
   );

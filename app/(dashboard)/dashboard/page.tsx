@@ -22,7 +22,6 @@ import { ActivityBoard } from "@/components/board/activity-board";
 const TABS = [
   { id: "leaderboard", label: "Leaderboard" },
   { id: "board", label: "Activity Board" },
-  { id: "analytics", label: "Analytics" },
 ];
 
 const STATUS: Record<
@@ -231,50 +230,6 @@ export default function DashboardPage() {
         {activeTab === "board" && (
           <div className="h-[calc(100vh-280px)]">
             <ActivityBoard />
-          </div>
-        )}
-
-        {activeTab === "analytics" && (
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              {
-                label: "Overall Score",
-                value: `${overallScore.toFixed(1)}%`,
-                color: "#ffffff",
-              },
-              {
-                label: "Verified Activities",
-                value: `${verified}/${ACTIVITIES.length}`,
-                color: "#ffffff",
-              },
-              {
-                label: "Budget Used",
-                value: `${Math.round((CURRENT_PROJECT.budget.used / CURRENT_PROJECT.budget.total) * 100)}%`,
-                color: "#ffffff",
-              },
-              {
-                label: "At Risk",
-                value: MILESTONES.filter(
-                  (m) => m.status === "at-risk" || m.status === "delayed",
-                ).length,
-                color: "#ffffff",
-              },
-            ].map((card) => (
-              <div
-                key={card.label}
-                className="p-6 rounded-lg bg-[#1B1B1A] border border-white/10"
-              >
-                <div className="text-[11px] font-semibold uppercase tracking-wider mb-3 text-white/30">
-                  {card.label}
-                </div>
-                <div
-                  className="text-[36px] font-bold"
-                  style={{ color: card.color }}
-                >
-                  {card.value}
-                </div>
-              </div>
-            ))}
           </div>
         )}
       </div>

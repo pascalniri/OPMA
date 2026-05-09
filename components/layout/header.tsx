@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Bell, Search, Plus, Layers } from "lucide-react";
 import { NOTIFICATIONS, WORKSPACES } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -108,9 +107,7 @@ export function Header({
             className="relative w-8 h-8 flex items-center justify-center rounded-md hover:bg-white/5 transition-colors text-white/35"
           >
             <Bell className="w-4 h-4" />
-            {unread > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#ffffff]" />
-            )}
+          
           </button>
           {notifOpen && (
             <div className="absolute top-full right-0 mt-1 w-72 rounded-lg overflow-hidden z-50 bg-[#1B1B1A] border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
@@ -154,7 +151,7 @@ export function Header({
               >
                 {tab.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-t-full bg-[#ffffff]" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[1px] rounded-t-full bg-[#ffffff]" />
                 )}
               </button>
             );

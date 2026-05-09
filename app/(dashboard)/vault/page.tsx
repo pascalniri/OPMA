@@ -38,8 +38,8 @@ export default function VaultPage() {
       <Header
         title="Vault"
         action={
-          <Button size="sm" className="h-7 font-bold">
-            <Plus className="w-3.5 h-3.5" strokeWidth={2.5} />
+          <Button>
+            <Plus size={12} />
             Upload
           </Button>
         }
