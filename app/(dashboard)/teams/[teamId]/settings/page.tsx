@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Check, Save } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,8 @@ const TABS = [
 ];
 
 export default function SettingsPage() {
+  const params = useParams();
+  const teamId = params.teamId;
   const [tab, setTab] = useState("general");
   const [saved, setSaved] = useState(false);
 

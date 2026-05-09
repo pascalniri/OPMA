@@ -22,9 +22,9 @@ export function TeamTab() {
   };
 
   return (
-    <div className="space-y-6 max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Invite Section */}
-      <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 space-y-4">
+      <div className="p-6 rounded-lg bg-[#1B1B1A] border border-white/10 space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <UserPlus size={16} className="text-white/40" />
           <h3 className="text-xs font-bold text-white/90">Invite New Member</h3>

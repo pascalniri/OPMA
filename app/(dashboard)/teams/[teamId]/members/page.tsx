@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { TEAM_MEMBERS, ACTIVITIES, type TeamMember } from "@/lib/data";
 import { Mail, Plus } from "lucide-react";
@@ -13,6 +14,8 @@ const statusColor: Record<string, string> = {
 };
 
 export default function TeamPage() {
+  const params = useParams();
+  const teamId = params.teamId;
   const totalActive = TEAM_MEMBERS.reduce((s, m) => s + m.activeActivities, 0);
   const totalCompleted = TEAM_MEMBERS.reduce(
     (s, m) => s + m.completedActivities,

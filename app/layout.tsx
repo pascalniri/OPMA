@@ -18,16 +18,34 @@ export const metadata: Metadata = {
     "Evidence-based project tracking with weighted milestones and proof-of-work verification.",
 };
 
+import { AuthProvider } from "@/components/providers/session-provider";
+import { Toaster } from "sonner";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        {children}
+        <AuthProvider>
+          {children}
+          <Toaster 
+            theme="dark" 
+            position="bottom-right" 
+            toastOptions={{
+              style: {
+                background: '#1B1B1A',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                color: 'white',
+                fontSize: '10px'
+              }
+            }}
+          />
+        </AuthProvider>
       </body>
     </html>
   );

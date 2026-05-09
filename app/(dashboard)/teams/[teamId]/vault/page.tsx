@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { VAULT_DOCUMENTS, type VaultDocument } from "@/lib/data";
 import { Search, Plus, FileText, Download, Trash2 } from "lucide-react";
@@ -16,6 +17,8 @@ const catColor: Record<VaultDocument["category"], string> = {
 };
 
 export default function VaultPage() {
+  const params = useParams();
+  const teamId = params.teamId;
   const [search, setSearch] = useState("");
   const [cat, setCat] = useState<"all" | VaultDocument["category"]>("all");
 

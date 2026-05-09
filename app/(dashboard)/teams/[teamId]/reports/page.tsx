@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import {
   MILESTONES,
@@ -10,6 +11,8 @@ import {
 import { cn } from "@/lib/utils";
 
 export default function ReportsPage() {
+  const params = useParams();
+  const teamId = params.teamId;
   const verified = ACTIVITIES.filter((a) => a.status === "verified").length;
   const inProg = ACTIVITIES.filter((a) => a.status === "in-progress").length;
   const pending = ACTIVITIES.filter(

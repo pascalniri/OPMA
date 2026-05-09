@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import {
   MILESTONES,
@@ -163,6 +164,8 @@ function MilestoneRow({ m, rank }: { m: Milestone; rank: number }) {
 }
 
 export default function MilestonesPage() {
+  const params = useParams();
+  const teamId = params.teamId;
   const totalPts = MILESTONES.reduce(
     (s, m) => s + (m.weight / 100) * m.progress,
     0,
