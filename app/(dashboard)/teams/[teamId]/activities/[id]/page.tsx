@@ -302,7 +302,7 @@ export default function ActivityPage({
                       <div className="bg-[#222220] border border-white/10 rounded-md p-8 space-y-8">
                         <div className="flex items-start justify-between">
                           <div className="space-y-1.5">
-                            <h3 className="text-sm font-bold text-white/90">
+                            <h3 className="text-xs font-bold text-white/90">
                               Verification Assets
                             </h3>
                             <p className="text-xs text-white/30 max-w-md">

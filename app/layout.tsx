@@ -28,20 +28,21 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         <AuthProvider>
           {children}
           <Toaster 
-            theme="dark" 
+            theme="light" 
             position="bottom-right" 
             toastOptions={{
               style: {
-                background: '#1B1B1A',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                color: 'white',
-                fontSize: '10px'
+                background: '#ffffff',
+                border: '1px solid rgba(0, 0, 0, 0.05)',
+                color: '#1a1a1a',
+                fontSize: '11px',
+                fontWeight: '600'
               }
             }}
           />

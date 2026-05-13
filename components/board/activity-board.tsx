@@ -18,31 +18,29 @@ const COLS: { id: ActivityStatus; label: string; sub: string; dot: string }[] =
       id: "todo",
       label: "To Do",
       sub: "Queued",
-      dot: "rgba(255,255,255,0.25)",
+      dot: "#D4D4D4",
     },
-    { id: "in-progress", label: "In Progress", sub: "Active", dot: "#ffffff" },
+    { id: "in-progress", label: "In Progress", sub: "Active", dot: "#3B82F6" },
     {
       id: "pending-verification",
       label: "Pending Review",
       sub: "Awaiting PoW",
-      dot: "#ffffff",
+      dot: "#F59E0B",
     },
     {
       id: "verified",
       label: "Verified Done",
       sub: "Approved",
-      dot: "#ffffff",
+      dot: "#10B981",
     },
   ];
 
 const priBadge: Record<string, string> = {
-  low: "rgba(255,255,255,0.20)",
-  medium: "#ffffff",
-  high: "#ffffff",
-  critical: "#ef4444",
+  low: "#71717A",
+  medium: "#3B82F6",
+  high: "#F59E0B",
+  critical: "#EF4444",
 };
-
-
 
 export function ActivityBoard() {
   const router = useRouter();
@@ -89,8 +87,8 @@ export function ActivityBoard() {
               onDragLeave={onDragLeave}
               onDrop={(e) => onDrop(e, col.id)}
               className={cn(
-                "shrink-0 w-[300px] flex flex-col rounded-lg transition-all duration-200 bg-[#1B1B1A]/50 border border-white/10",
-                isOver ? "bg-white/10 border-white/20 ring-1 ring-white/10" : "",
+                "shrink-0 w-[300px] flex flex-col rounded-xl transition-all duration-200 bg-black/2 border border-black/[0.04]",
+                isOver ? "bg-black/4 border-black/[0.08]" : "",
               )}
             >
               {/* Column Header */}
@@ -100,24 +98,23 @@ export function ActivityBoard() {
                     className="w-1.5 h-1.5 rounded-full"
                     style={{
                       background: col.dot,
-                      boxShadow: isOver ? `0 0 8px ${col.dot}` : "none",
                     }}
                   />
                   <div>
-                    <span className="text-[13px] font-bold text-white/90 tracking-tight">
+                    <span className="text-[13px] font-bold text-[#1A1A1A] tracking-tight">
                       {col.label}
                     </span>
-                    <span className="block text-[9px] text-white/25 font-medium uppercase tracking-wider mt-0.5">
+                    <span className="block text-[9px] text-[#A3A3A3] font-bold uppercase tracking-wider mt-0.5">
                       {col.sub}
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <span className="text-[8px] font-bold tabular-nums text-white/30 px-2 py-0.5 rounded-md bg-white/5 border border-white/5">
+                  <span className="text-[10px] font-bold tabular-nums text-[#737373] px-2 py-0.5 rounded-md bg-white border border-black/[0.04] shadow-sm">
                     {cards.length}
                   </span>
-                  <button className="text-white/20 hover:text-white/50 transition-colors p-1 rounded-md hover:bg-white/5">
-                    <Plus size={10} />
+                  <button className="text-[#A3A3A3] hover:text-[#1A1A1A] transition-colors p-1 rounded-md hover:bg-black/4">
+                    <Plus size={12} />
                   </button>
                 </div>
               </div>
@@ -126,12 +123,12 @@ export function ActivityBoard() {
               <div
                 className={cn(
                   "flex-1 overflow-y-auto p-3 space-y-3 transition-colors",
-                  isOver ? "bg-white/5" : "",
+                  isOver ? "bg-black/[0.01]" : "",
                 )}
               >
                 {cards.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-32 border-2 border-dashed border-white/[0.03] rounded-lg">
-                    <span className="text-[8px] font-medium text-white/15 uppercase tracking-widest">
+                  <div className="flex flex-col items-center justify-center h-32 border-2 border-dashed border-black/[0.02] rounded-xl">
+                    <span className="text-[10px] font-bold text-[#D4D4D4] uppercase tracking-widest">
                       Drop Here
                     </span>
                   </div>
@@ -143,13 +140,13 @@ export function ActivityBoard() {
                       onDragStart={(e) => onDragStart(e, a.id)}
                       onDragEnd={() => setDraggedId(null)}
                       className={cn(
-                        "rounded-md p-4 group relative transition-all duration-200 cursor-grab active:cursor-grabbing bg-[#1B1B1A] border border-white/10 hover:border-white/10 hover:bg-[#252523]",
-                        draggedId === a.id ? "opacity-40 scale-[0.98] grayscale" : "",
+                        "rounded-xl p-4 group relative transition-all duration-200 cursor-grab active:cursor-grabbing bg-white border border-black/[0.04] hover:border-black/[0.08] hover:shadow-md shadow-sm",
+                        draggedId === a.id
+                          ? "opacity-40 scale-[0.98] grayscale"
+                          : "",
                       )}
                     >
-                     
-
-                      <h4 className="text-[13px] font-semibold mb-3 leading-snug text-white/90 group-hover:text-white transition-colors">
+                      <h4 className="text-[13px] font-bold mb-3 leading-snug text-[#1A1A1A]">
                         {a.title}
                       </h4>
 
@@ -166,10 +163,10 @@ export function ActivityBoard() {
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between pt-3.5 border-t border-white/5">
-                        <div className="flex items-center gap-2 text-white/50">
+                      <div className="flex items-center justify-between pt-3.5 border-t border-black/[0.04]">
+                        <div className="flex items-center gap-2 text-[#A3A3A3]">
                           <CalendarDays size={10} />
-                          <span className="text-[8px] font-medium tabular-nums">
+                          <span className="text-[8px] font-bold tabular-nums">
                             {a.dueDate}
                           </span>
                         </div>
@@ -180,14 +177,12 @@ export function ActivityBoard() {
                                 e.stopPropagation();
                                 router.push(`/activities/${a.id}`);
                               }}
-                              className="h-7 px-2 flex items-center gap-1.5 text-[10px] font-bold rounded-lg transition-all bg-white text-black hover:bg-white/90 shadow-lg shadow-white/5"
+                              className="h-7 px-2 flex items-center gap-1.5 text-[10px] font-bold rounded-lg transition-all bg-[#1A1A1A] text-white hover:bg-[#1A1A1A]/90 shadow-sm"
                             >
                               Manage
                             </Button>
                           )}
-                          <div
-                            className="w-7 h-7 bg-white text-[#1b1b1a] rounded-full flex items-center justify-center text-[10px] font-bold"
-                          >
+                          <div className="w-7 h-7 bg-black/4 text-[#1A1A1A] rounded-full flex items-center justify-center text-[10px] font-bold border border-black/[0.05]">
                             {a.assignee.initials}
                           </div>
                         </div>

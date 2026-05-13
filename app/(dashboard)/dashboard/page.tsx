@@ -31,23 +31,23 @@ const STATUS: Record<
   completed: {
     icon: CheckCircle2,
     label: "Completed",
-    color: "rgba(255,255,255,0.9)",
+    color: "#10b981",
   },
   "on-track": {
     icon: Circle,
     label: "On Track",
-    color: "rgba(255,255,255,0.7)",
+    color: "#3b82f6",
   },
   "at-risk": {
     icon: AlertCircle,
     label: "At Risk",
-    color: "rgba(255,255,255,0.5)",
+    color: "#f59e0b",
   },
-  delayed: { icon: XCircle, label: "Delayed", color: "rgba(255,255,255,0.4)" },
+  delayed: { icon: XCircle, label: "Delayed", color: "#ef4444" },
   "not-started": {
     icon: Clock,
     label: "Not Started",
-    color: "rgba(255,255,255,0.25)",
+    color: "#71717a",
   },
 };
 
@@ -70,7 +70,7 @@ export default function DashboardPage() {
   const verified = ACTIVITIES.filter((a) => a.status === "verified").length;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden bg-[#252523]">
+    <div className="flex flex-col h-full overflow-hidden bg-background">
       <Header
         title="Project Pulse"
         tabs={TABS}
@@ -83,33 +83,33 @@ export default function DashboardPage() {
       <div className="flex-1 overflow-auto px-8 py-7">
         {/* ── Arena-style page title section ── */}
         <div className="mb-7">
-          <h1 className="text-[22px] font-semibold mb-1.5 text-white/90">
+          <h1 className="text-[22px] font-bold mb-1.5 text-[#1A1A1A]">
             {CURRENT_PROJECT.name}
           </h1>
-          <p className="text-xs mb-4 text-white/40">
+          <p className="text-xs mb-4 text-[#737373]">
             {CURRENT_PROJECT.description}
           </p>
         </div>
 
         {activeTab === "leaderboard" && (
           <>
-            {/* ── Filter bar — Arena "Show Filters" row ── */}
-            <div className="flex items-center justify-between mb-0 px-4 h-10 rounded-t-lg bg-[#1B1B1A] border-x border-t border-white/10">
-              <button className="flex items-center gap-2 text-xs transition-colors text-white/45 hover:text-white/70">
+            {/* ── Filter bar ── */}
+            <div className="flex items-center justify-between mb-0 px-4 h-10 rounded-t-xl bg-white border-x border-t border-black/4">
+              <button className="flex items-center gap-2 text-xs transition-colors text-[#737373] hover:text-[#1A1A1A]">
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 Show Filters
               </button>
               <div className="flex items-center gap-1">
-                <span className="text-[11px] mr-2 text-white/28">Sort by</span>
+                <span className="text-[11px] mr-2 text-[#A3A3A3]">Sort by</span>
                 {(["weight", "progress", "status"] as const).map((opt) => (
                   <button
                     key={opt}
                     onClick={() => setSortBy(opt)}
                     className={cn(
-                      "px-3 h-6 rounded text-[11px] font-medium capitalize transition-all border",
+                      "px-3 h-6 rounded-md text-[11px] font-medium capitalize transition-all border",
                       sortBy === opt
-                        ? "text-white bg-[#ffffff]/20 border-[#ffffff]/40"
-                        : "text-white/38 bg-transparent border-transparent",
+                        ? "text-[#1A1A1A] bg-black/2 border-black/[0.08]"
+                        : "text-[#A3A3A3] bg-transparent border-transparent hover:text-[#1A1A1A]",
                     )}
                   >
                     {opt}
@@ -119,10 +119,10 @@ export default function DashboardPage() {
             </div>
 
             {/* ── Leaderboard table ── */}
-            <div className="bg-[#1B1B1A] border-x border-b border-white/10 rounded-b-lg overflow-hidden">
+            <div className="bg-white border border-black/[0.04] rounded-b-xl overflow-hidden">
               {/* Table header */}
               <div
-                className="grid px-4 py-2.5 bg-[#252523] border-b border-white/10"
+                className="grid px-4 py-2.5 bg-black/[0.01] border-b border-black/4"
                 style={{
                   gridTemplateColumns: "48px 1fr 120px 110px 180px 100px",
                 }}
@@ -137,7 +137,7 @@ export default function DashboardPage() {
                 ].map((col) => (
                   <div
                     key={col}
-                    className="text-[11px] font-semibold uppercase tracking-widest text-white/28"
+                    className="text-[11px] font-bold uppercase tracking-widest text-[#A3A3A3]"
                   >
                     {col}
                   </div>
@@ -153,9 +153,9 @@ export default function DashboardPage() {
                   <div
                     key={m.id}
                     className={cn(
-                      "grid items-center px-4 py-4 transition-colors cursor-default hover:bg-white/[0.025]",
+                      "grid items-center px-4 py-4 transition-colors cursor-default hover:bg-black/[0.01]",
                       i < sorted.length - 1
-                        ? "border-b border-white/[0.05]"
+                        ? "border-b border-black/[0.04]"
                         : "",
                     )}
                     style={{
@@ -163,16 +163,16 @@ export default function DashboardPage() {
                     }}
                   >
                     {/* Rank */}
-                    <div className="text-xs font-semibold text-white/30">
+                    <div className="text-xs font-bold text-[#A3A3A3]">
                       {i + 1}
                     </div>
 
                     {/* Milestone name */}
                     <div>
-                      <div className="text-xs font-medium text-white/85">
+                      <div className="text-xs font-bold text-[#1A1A1A]">
                         {m.name}
                       </div>
-                      <div className="text-[11px] mt-0.5 text-white/30">
+                      <div className="text-[11px] mt-0.5 text-[#737373]">
                         {m.completedActivities}/{m.activitiesCount} activities ·{" "}
                         {m.weight}% weight
                       </div>
@@ -180,10 +180,10 @@ export default function DashboardPage() {
 
                     {/* Score */}
                     <div>
-                      <span className="text-xs font-bold text-white">
+                      <span className="text-xs font-bold text-[#1A1A1A]">
                         {pts}
                       </span>
-                      <span className="text-[11px] ml-1 text-white/28">
+                      <span className="text-[11px] ml-1 text-[#A3A3A3]">
                         pts
                       </span>
                     </div>
@@ -195,14 +195,17 @@ export default function DashboardPage() {
                         style={{ color: s.color }}
                         strokeWidth={2}
                       />
-                      <span className="text-xs" style={{ color: s.color }}>
+                      <span
+                        className="text-xs font-medium"
+                        style={{ color: s.color }}
+                      >
                         {s.label}
                       </span>
                     </div>
 
                     {/* Progress bar */}
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-1.5 rounded-full overflow-hidden bg-white/10">
+                      <div className="flex-1 h-1.5 rounded-full overflow-hidden bg-black/4">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -211,13 +214,13 @@ export default function DashboardPage() {
                           }}
                         />
                       </div>
-                      <span className="text-[11px] tabular-nums w-8 text-right text-white/35">
+                      <span className="text-[11px] tabular-nums w-8 text-right text-[#A3A3A3]">
                         {m.progress}%
                       </span>
                     </div>
 
                     {/* Due */}
-                    <div className="text-[11px] tabular-nums text-white/32">
+                    <div className="text-[11px] tabular-nums text-[#A3A3A3]">
                       {m.dueDate}
                     </div>
                   </div>
