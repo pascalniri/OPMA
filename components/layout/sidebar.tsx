@@ -41,8 +41,6 @@ const NAV = [
   { href: "/notifications", label: "Notifications", icon: Bell },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/assigned", label: "Assigned to me", icon: UserCheck },
-  { href: "/tasks", label: "Task", icon: CheckSquare },
-  { href: "/projects", label: "Projects", icon: Folder },
   { href: "/schedule", label: "Schedule", icon: Calendar },
   { href: "/companies", label: "Companies", icon: Building2 },
 ];
@@ -110,7 +108,7 @@ export function Sidebar() {
           </span>
         </div>
         <button className="text-[#A1A1A1] hover:text-sidebar-foreground transition-colors">
-          <PanelLeftClose size={16} />
+          <PanelLeftClose size={14} />
         </button>
       </div>
 
@@ -171,9 +169,9 @@ export function Sidebar() {
           <div className="space-y-0.5">
             <Link
               href="/home"
-              className="flex items-center gap-3 px-3 h-9 rounded-lg text-[13px] text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
+              className="flex items-center gap-3 px-3 h-9 rounded-lg text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
             >
-              <Home size={18} className="text-[#A3A3A3]" strokeWidth={1.5} />
+              <Home size={14} className="text-[#A3A3A3]" strokeWidth={1.5} />
               Home
             </Link>
 
@@ -182,14 +180,14 @@ export function Sidebar() {
               <button
                 onClick={() => setIsTeamsExpanded(!isTeamsExpanded)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 h-9 rounded-lg text-[13px] transition-all font-medium",
+                  "w-full flex items-center gap-3 px-3 h-9 rounded-lg text-xs transition-all font-medium",
                   isTeamsExpanded
                     ? "text-sidebar-foreground bg-black/2"
                     : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2",
                 )}
               >
                 <LayoutGrid
-                  size={18}
+                  size={14}
                   className="text-[#A3A3A3]"
                   strokeWidth={1.5}
                 />
@@ -227,27 +225,60 @@ export function Sidebar() {
                         </button>
 
                         {expandedTeamId === team.id && (
-                          <div className="ml-4 space-y-0.5 mb-2">
-                            {team.projects.map((project) => {
-                              const isActive = pathname.includes(project.id);
-                              return (
-                                <Link
-                                  key={project.id}
-                                  href={`/teams/${team.id}/projects/${project.id}`}
-                                  className={cn(
-                                    "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-[12px] transition-all",
-                                    isActive
-                                      ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold"
-                                      : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]",
-                                  )}
-                                >
-                                  <div className="w-1 h-1 rounded-full bg-[#D4D4D4]" />
-                                  <span className="truncate">
-                                    {project.name}
-                                  </span>
-                                </Link>
-                              );
-                            })}
+                          <div className="ml-4 space-y-0.5 mb-3 mt-1">
+                            {/* Issues link */}
+                            <Link
+                              href={`/teams/${team.id}/issues`}
+                              className={cn(
+                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-[12px] transition-all",
+                                pathname === `/teams/${team.id}/issues` ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold" : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]"
+                              )}
+                            >
+                              <Zap size={13} className="text-[#A3A3A3]" />
+                              <span>Issues</span>
+                            </Link>
+
+                            {/* Projects section */}
+                            <div className="space-y-0.5">
+                              <div className="flex items-center gap-2 pl-4 pr-3 h-8 text-[12px] text-muted-foreground font-semibold">
+                                <Folder size={13} className="text-[#A3A3A3]" />
+                                <span>Projects</span>
+                              </div>
+                              <div className="ml-4 space-y-0.5">
+                                {team.projects.map((project) => {
+                                  const isActive = pathname.includes(project.id);
+                                  return (
+                                    <Link
+                                      key={project.id}
+                                      href={`/teams/${team.id}/projects/${project.id}`}
+                                      className={cn(
+                                        "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-xs transition-all",
+                                        isActive
+                                          ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold shadow-sm"
+                                          : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]",
+                                      )}
+                                    >
+                                      <div className="w-1 h-1 rounded-full bg-[#D4D4D4]" />
+                                      <span className="truncate">
+                                        {project.name}
+                                      </span>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Members link */}
+                            <Link
+                              href={`/teams/${team.id}/members`}
+                              className={cn(
+                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-xs transition-all",
+                                pathname === `/teams/${team.id}/members` ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold" : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]"
+                              )}
+                            >
+                              <Users size={13} className="text-[#A3A3A3]" />
+                              <span>Members</span>
+                            </Link>
                           </div>
                         )}
                       </div>
@@ -259,9 +290,9 @@ export function Sidebar() {
 
             <Link
               href="/social-manage"
-              className="flex items-center gap-3 px-3 h-9 rounded-lg text-[13px] text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
+              className="flex items-center gap-3 px-3 h-9 rounded-lg text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
             >
-              <Target size={18} className="text-primary" strokeWidth={1.5} />
+              <Target size={14} className="text-primary" strokeWidth={1.5} />
               Social Manage
             </Link>
           </div>
@@ -275,7 +306,7 @@ export function Sidebar() {
           className="w-full bg-white rounded p-3 border border-black/10 hover:bg-black/1 transition-all group"
         >
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-black/[0.04] flex items-center justify-center text-sidebar-foreground font-bold text-[10px]">
+            <div className="w-8 h-8 rounded-lg bg-black/4 flex items-center justify-center text-sidebar-foreground font-bold text-[10px]">
               {activeOrganization?.name?.[0] || "O"}
             </div>
             <div className="flex-1 text-left min-w-0">
