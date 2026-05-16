@@ -20,18 +20,25 @@ interface CreateWorkspaceModalProps {
   onSuccess?: () => void;
 }
 
-export function CreateWorkspaceModal({ 
-  isOpen, 
-  onClose, 
-  onSuccess 
+export function CreateWorkspaceModal({
+  isOpen,
+  onClose,
+  onSuccess,
 }: CreateWorkspaceModalProps) {
   const [submitted, setSubmitted] = useState(false);
-  
-  const { register, errors, onSubmit: hookSubmit, isLoading, apiError, reset } = useOrganizations({
+
+  const {
+    register,
+    errors,
+    onSubmit: hookSubmit,
+    isLoading,
+    apiError,
+    reset,
+  } = useOrganizations({
     onSuccess: () => {
       setSubmitted(true);
       if (onSuccess) onSuccess();
-      
+
       // Delay closing to show success state, then refresh
       setTimeout(() => {
         handleClose();
@@ -62,7 +69,7 @@ export function CreateWorkspaceModal({
         {submitted ? (
           <div className="flex flex-col items-center justify-center py-12 px-6">
             <div className="w-14 h-14 rounded-full bg-black/5 border border-black/10 flex items-center justify-center mb-4">
-              <CheckCircle2 className="w-7 h-7 text-emerald-500" />
+              <CheckCircle2 className="w-7 h-7 text-green-500" />
             </div>
             <h3 className="text-base font-bold text-foreground mb-1">
               Workspace Created
@@ -75,9 +82,7 @@ export function CreateWorkspaceModal({
           <form onSubmit={hookSubmit} className="px-6 pt-5 pb-6 space-y-5">
             {/* Workspace Name */}
             <div>
-              <Label>
-                Workspace Name
-              </Label>
+              <Label>Workspace Name</Label>
               <div className="relative">
                 <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/30" />
                 <Input
@@ -87,19 +92,19 @@ export function CreateWorkspaceModal({
                 />
               </div>
               {errors.name && (
-                <p className="mt-1.5 text-[10px] text-red-500 font-bold">{errors.name.message}</p>
+                <p className="mt-1.5 text-[10px] text-red-500 font-bold">
+                  {errors.name.message}
+                </p>
               )}
             </div>
 
             {/* URL Slug */}
             <div>
-              <Label>
-                Workspace URL
-              </Label>
+              <Label>Workspace URL</Label>
               <div className="relative">
                 <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/30" />
                 <div className="flex items-center">
-                   <span className="absolute left-9 text-muted-foreground/40 text-[12px] font-medium">
+                  <span className="absolute left-9 text-muted-foreground/40 text-[12px] font-medium">
                     opma.io/
                   </span>
                   <Input
@@ -110,7 +115,9 @@ export function CreateWorkspaceModal({
                 </div>
               </div>
               {errors.slug ? (
-                <p className="mt-1.5 text-[10px] text-red-500 font-bold">{errors.slug.message}</p>
+                <p className="mt-1.5 text-[10px] text-red-500 font-bold">
+                  {errors.slug.message}
+                </p>
               ) : (
                 <p className="mt-1.5 text-[10px] text-muted-foreground font-medium">
                   This will be your unique workspace identifier.
@@ -134,12 +141,12 @@ export function CreateWorkspaceModal({
               >
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="flex-1"
-              >
-                {isLoading ? <Loader2 size={12} className="animate-spin" /> : "Create Workspace"}
+              <Button type="submit" disabled={isLoading} className="flex-1">
+                {isLoading ? (
+                  <Loader2 size={12} className="animate-spin" />
+                ) : (
+                  "Create Workspace"
+                )}
               </Button>
             </div>
           </form>

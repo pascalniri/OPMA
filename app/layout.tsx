@@ -40,6 +40,7 @@ export default function RootLayout({
               style: {
                 background: '#ffffff',
                 border: '1px solid rgba(0, 0, 0, 0.05)',
+                borderRadius: '2px',
                 color: '#1a1a1a',
                 fontSize: '11px',
                 fontWeight: '600'

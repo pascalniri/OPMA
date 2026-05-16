@@ -109,7 +109,7 @@ interface StatCardProps {
   label: string;
   value: string | number;
   sub?: string;
-  accent?: "brand" | "emerald" | "amber" | "red" | "violet";
+  accent?: "brand" | "green" | "amber" | "red" | "violet";
 }
 
 export function StatCard({
@@ -126,7 +126,7 @@ export function StatCard({
         bg: "rgba(100,80,223,0.10)",
         border: "rgba(100,80,223,0.18)",
       },
-      emerald: {
+      green: {
         color: "#ffffff",
         bg: "rgba(34,197,94,0.09)",
         border: "rgba(34,197,94,0.16)",

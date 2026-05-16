@@ -169,7 +169,7 @@ export function Sidebar() {
           <div className="space-y-0.5">
             <Link
               href="/home"
-              className="flex items-center gap-3 px-3 h-9 rounded-lg text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
+              className="flex items-center gap-3 px-3 h-9 rounded text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
             >
               <Home size={14} className="text-[#A3A3A3]" strokeWidth={1.5} />
               Home
@@ -180,7 +180,7 @@ export function Sidebar() {
               <button
                 onClick={() => setIsTeamsExpanded(!isTeamsExpanded)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 h-9 rounded-lg text-xs transition-all font-medium",
+                  "w-full flex items-center gap-3 px-3 h-9 rounded text-xs transition-all font-medium",
                   isTeamsExpanded
                     ? "text-sidebar-foreground bg-black/2"
                     : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2",
@@ -230,7 +230,7 @@ export function Sidebar() {
                             <Link
                               href={`/teams/${team.id}/issues`}
                               className={cn(
-                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-[12px] transition-all",
+                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded text-[12px] transition-all",
                                 pathname === `/teams/${team.id}/issues` ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold" : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]"
                               )}
                             >
@@ -240,10 +240,18 @@ export function Sidebar() {
 
                             {/* Projects section */}
                             <div className="space-y-0.5">
-                              <div className="flex items-center gap-2 pl-4 pr-3 h-8 text-[12px] text-muted-foreground font-semibold">
+                              <Link
+                                href={`/teams/${team.id}/projects`}
+                                className={cn(
+                                  "flex items-center gap-2 pl-4 pr-3 h-8 rounded text-[12px] transition-all font-semibold",
+                                  pathname === `/teams/${team.id}/projects`
+                                    ? "text-sidebar-foreground bg-white border border-black/3"
+                                    : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/1",
+                                )}
+                              >
                                 <Folder size={13} className="text-[#A3A3A3]" />
                                 <span>Projects</span>
-                              </div>
+                              </Link>
                               <div className="ml-4 space-y-0.5">
                                 {team.projects.map((project) => {
                                   const isActive = pathname.includes(project.id);
@@ -252,10 +260,10 @@ export function Sidebar() {
                                       key={project.id}
                                       href={`/teams/${team.id}/projects/${project.id}`}
                                       className={cn(
-                                        "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-xs transition-all",
+                                        "flex items-center gap-2 pl-4 pr-3 h-8 rounded border border-transparent text-xs transition-all",
                                         isActive
-                                          ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold shadow-sm"
-                                          : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]",
+                                          ? "text-sidebar-foreground bg-white border border-black/3 "
+                                          : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/1",
                                       )}
                                     >
                                       <div className="w-1 h-1 rounded-full bg-[#D4D4D4]" />
@@ -272,7 +280,7 @@ export function Sidebar() {
                             <Link
                               href={`/teams/${team.id}/members`}
                               className={cn(
-                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded-lg text-xs transition-all",
+                                "flex items-center gap-2 pl-4 pr-3 h-8 rounded text-xs transition-all",
                                 pathname === `/teams/${team.id}/members` ? "text-sidebar-foreground bg-white border border-black/[0.03] font-semibold" : "text-muted-foreground hover:text-sidebar-foreground hover:bg-black/[0.01]"
                               )}
                             >
@@ -290,7 +298,7 @@ export function Sidebar() {
 
             <Link
               href="/social-manage"
-              className="flex items-center gap-3 px-3 h-9 rounded-lg text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
+              className="flex items-center gap-3 px-3 h-9 rounded text-xs text-muted-foreground hover:text-sidebar-foreground hover:bg-black/2 transition-all font-medium"
             >
               <Target size={14} className="text-primary" strokeWidth={1.5} />
               Social Manage
@@ -306,7 +314,7 @@ export function Sidebar() {
           className="w-full bg-white rounded p-3 border border-black/10 hover:bg-black/1 transition-all group"
         >
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-black/4 flex items-center justify-center text-sidebar-foreground font-bold text-[10px]">
+            <div className="w-8 h-8 rounded bg-black/4 flex items-center justify-center text-sidebar-foreground font-bold text-[10px]">
               {activeOrganization?.name?.[0] || "O"}
             </div>
             <div className="flex-1 text-left min-w-0">
@@ -352,7 +360,7 @@ export function Sidebar() {
                   setIsModalOpen(true);
                   setIsOrgSwitcherOpen(false);
                 }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-[11px] font-medium text-[#737373] hover:text-sidebar-foreground hover:bg-black/[0.02] rounded-lg transition-colors"
+                className="w-full flex items-center gap-2 px-3 py-2 text-[11px] font-medium text-[#737373] hover:text-sidebar-foreground hover:bg-black/[0.02] rounded transition-colors"
                >
                  <Plus size={14} />
                  Create Workspace

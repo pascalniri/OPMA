@@ -25,8 +25,8 @@ const QUICK_ACTIONS = [
     label: "Create Project",
     sub: "Create a project for your tasks",
     icon: PlusCircle,
-    color: "text-emerald-500",
-    bg: "bg-emerald-50",
+    color: "text-green-500",
+    bg: "bg-green-50",
   },
   {
     label: "Create Task",
